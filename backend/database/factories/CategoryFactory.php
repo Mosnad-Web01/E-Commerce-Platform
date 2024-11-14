@@ -22,7 +22,7 @@ class CategoryFactory extends Factory
             return [
                 'parent_id' => null, // Optional: can create a nested structure if needed
                 'name' => ucfirst($name),
-                'slug' => Str::slug($name),
+                'slug' => Str::slug($name). '-' . uniqid(), // Generate a unique slug
                 'description' => $this->faker->sentence,
                 'image' => $this->faker->imageUrl(),
                 'status' => $this->faker->randomElement(['active', 'inactive']),

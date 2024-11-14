@@ -19,7 +19,7 @@ class ProductController extends Controller
         if ($request->has('category_id')) {
             $query->where('category_id', $request->category_id);
         }
-        
+
         if ($request->has('min_price') && $request->has('max_price')) {
             $query->whereBetween('price', [$request->min_price, $request->max_price]);
         }
@@ -35,5 +35,32 @@ class ProductController extends Controller
         $products = $query->paginate(10);
 
         return response()->json($products);
+    }
+
+
+    public function show($id)
+    {
+        $product = Product::with([
+            'category',
+            'images',
+            'attributes',
+            'artisan' => function ($query) {
+                $query->with('user_profile');
+            },
+            'reviews' => function ($query) {
+                $query->with('user');
+            },
+            'inventoryTransactions',
+            'views',
+            'wishlists'
+        ])->find($id);
+
+        if (!$product) {
+            return response()->json([
+                'message' => 'Product not found'
+            ], 404);
+        }
+
+        return response()->json($product);
     }
 }

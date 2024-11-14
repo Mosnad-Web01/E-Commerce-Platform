@@ -42,6 +42,8 @@ class DatabaseSeeder extends Seeder
             OrderItemSeeder::class,        // to create 3 order items for each order
             ReviewSeeder::class,           // to create 3 reviews for each order item
             WishlistSeeder::class,         // to create 5 wishlists for each user
+            InventoryTransactionSeeder::class, // to create 50 inventory transactions
+            ProductViewSeeder::class,      // to create 50 product views
 
         ]);
     }
