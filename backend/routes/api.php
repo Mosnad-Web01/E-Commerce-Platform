@@ -8,7 +8,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// Route::get('customer/products', [ProductController::class, 'index']);
+
 
 Route::prefix('customer')->group(function () {
     // show all products
@@ -20,5 +20,12 @@ Route::prefix('customer')->group(function () {
     Route::get('products/{productId}/reviews', [ProductController::class, 'getReviews']);
     // add review
     Route::post('products/{productId}/reviews', [ProductController::class, 'addReview'])->middleware('checkRole:customer');
+
 });
+// update review status for admin
+Route::put('reviews/{reviewId}/status', [ProductController::class, 'updateReviewStatus'])
+    ->middleware(['auth:sanctum', 'checkRole:1']);
+
+
+
 
