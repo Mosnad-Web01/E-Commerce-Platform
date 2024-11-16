@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('comment');
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
-
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('product_id')->constrained('products');
             $table->foreignId('order_item_id')->constrained('order_items');

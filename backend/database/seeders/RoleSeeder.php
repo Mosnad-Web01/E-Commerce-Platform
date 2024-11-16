@@ -19,7 +19,7 @@ class RoleSeeder extends Seeder
         // create 3 roles : admin, artisan, customer
             Role::factory(3)->state(new Sequence(
                 ['name' => 'admin'],
-                ['name' => 'artisan'],
+                ['name' => 'vendor'],
                 ['name' => 'customer']
             ))->create();
     }
