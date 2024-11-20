@@ -27,7 +27,7 @@ class ProductController extends Controller
             else {
                 echo "No repository found";
             }
-            return response()->json(['products' => $products]);
+            return view('vendor.products.index', ['products' => $products]);
         }
     
         public function show($id)
@@ -38,10 +38,15 @@ class ProductController extends Controller
                 return response()->json(['message' => 'Product not found'], 404);
             }
     
-            return response()->json(['product' => $product]);
+            return view('vendor.products.show', ['product' => $product]);
         }
     
         // Similarly, for create, update, and delete:
+        
+        public function create()
+        {
+            return view('vendor.products.create');
+        }
         public function store(Request $request)
         {
             $validatedData = $request->validate([
@@ -63,6 +68,11 @@ class ProductController extends Controller
     
             $product = $this->productRepository->create($validatedData);
             return response()->json(['product' => $product, 'message' => 'Product created successfully'], 201);
+        }
+
+        public function edit($id){
+            $product = $this->productRepository->getById($id);
+            return view('vendor.products.edit', ['product' => $product]);
         }
     
         public function update(Request $request, $id)
