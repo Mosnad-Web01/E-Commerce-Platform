@@ -67,6 +67,9 @@ Route::middleware('auth:sanctum')->group(function () {
             // show all products
             Route::get('products', [ProductController::class, 'index']);
 
+            // show single product details
+            Route::get('products/{productId}', [ProductController::class, 'show']);
+
 
 
             // list other customer routes here:

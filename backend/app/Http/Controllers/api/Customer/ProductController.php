@@ -47,7 +47,7 @@ class ProductController extends Controller
             'category',
             'images',
             'attributes',
-            'artisan' => function ($query) {
+            'vendor' => function ($query) {
                 $query->with('user_profile');
             },
             'reviews' => function ($query) {
