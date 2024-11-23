@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\Api\Customer\ProductController;
 
 
 
@@ -20,7 +21,6 @@ Route::prefix('auth')->group(function () {
 
     // Endpoint: /api/auth/login
     Route::post('/login', [AuthController::class, 'login'])->name('login');
-
 });
 
 // prrotected Routes (Require Authentication)
@@ -63,8 +63,13 @@ Route::middleware('auth:sanctum')->group(function () {
             return "Hello Customer";
         });
 
-        // list other customer routes here:
+        Route::prefix('customer')->group(function () {
+            // show all products
+            Route::get('products', [ProductController::class, 'index']);
 
 
+
+            // list other customer routes here:
+        });
     });
 });
