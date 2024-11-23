@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\Api\Customer\ReviewController;
 use App\Http\Controllers\Api\Customer\ProductController;
 
 
@@ -69,6 +70,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
             // show single product details
             Route::get('products/{productId}', [ProductController::class, 'show']);
+
+
+            // show all reviews
+            Route::get('products/{productId}/reviews', [ReviewController::class, 'getReviews']);
 
 
 
