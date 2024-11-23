@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProductView>
  */
-class ProductViewFactory extends Factory
+class ProductViewsFactory extends Factory
 {
     /**
      * Define the model's default state.
