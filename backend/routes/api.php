@@ -40,7 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
         });
 
         // update review status for admin
-Route::put('reviews/{reviewId}/status', [ReviewController::class, 'updateReviewStatus']);
+        Route::put('reviews/{reviewId}/status', [ReviewController::class, 'updateReviewStatus']);
 
         // list other admin routes here :
 
@@ -80,6 +80,9 @@ Route::put('reviews/{reviewId}/status', [ReviewController::class, 'updateReviewS
 
             // add review
             Route::post('products/{productId}/reviews', [ReviewController::class, 'addReview']);
+
+            // delete review
+            Route::delete('reviews/{reviewId}', [ReviewController::class, 'deleteReview']);
 
 
 
