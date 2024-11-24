@@ -74,4 +74,18 @@ class ReviewController extends Controller
 
         return response()->json($review, 201);
     }
+
+    public function updateReviewStatus($reviewId, $status)
+{
+    $review = Review::findOrFail($reviewId);
+
+    if (!in_array($status, ['approved', 'rejected'])) {
+        return response()->json(['message' => 'Invalid status'], 400);
+    }
+
+    $review->status = $status;
+    $review->save();
+
+    return response()->json($review);
+}
 }
