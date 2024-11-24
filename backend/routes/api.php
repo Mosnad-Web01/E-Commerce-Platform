@@ -75,6 +75,9 @@ Route::middleware('auth:sanctum')->group(function () {
             // show all reviews
             Route::get('products/{productId}/reviews', [ReviewController::class, 'getReviews']);
 
+            // add review
+            Route::post('products/{productId}/reviews', [ReviewController::class, 'addReview']);
+
 
 
             // list other customer routes here:
