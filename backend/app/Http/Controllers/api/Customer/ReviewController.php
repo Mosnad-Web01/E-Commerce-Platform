@@ -75,19 +75,42 @@ class ReviewController extends Controller
         return response()->json($review, 201);
     }
 
-    public function updateReviewStatus($reviewId, $status)
-    {
-        $review = Review::findOrFail($reviewId);
+    public function updateReviewStatus(Request $request, $reviewId)
+{
+    $validStatuses = ['approved', 'rejected', 'pending'];
 
-        if (!in_array($status, ['approved', 'rejected'])) {
-            return response()->json(['message' => 'Invalid status'], 400);
-        }
-
-        $review->status = $status;
-        $review->save();
-
-        return response()->json($review);
+    $status = $request->input('status');
+    if (!in_array($status, $validStatuses)) {
+        return response()->json([
+            'message' => 'Invalid status. Valid statuses are "approved", "rejected", or "pending".'
+        ], 400);
     }
+
+    $review = Review::find($reviewId);
+    if (!$review) {
+        return response()->json(['message' => 'Review not found.'], 404);
+    }
+
+    if ($review->status === $status) {
+        return response()->json([
+            'message' => "The review is already set to '{$status}'. No changes were made.",
+            'review' => $review
+        ], 200);
+    }
+
+    $previousStatus = $review->status ?? 'none';
+    $review->update(['status' => $status]);
+
+    $message = "The review status has been changed from '{$previousStatus}' to '{$status}'.";
+
+    return response()->json([
+        'message' => $message,
+        'review' => $review
+    ], 200);
+}
+
+
+
 
     public function deleteReview($reviewId)
     {

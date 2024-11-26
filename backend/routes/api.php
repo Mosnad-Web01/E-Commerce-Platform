@@ -39,10 +39,13 @@ Route::middleware('auth:sanctum')->group(function () {
             return "Hello Admin";
         });
 
+        Route::prefix('admin')->group(function () {
         // update review status for admin
         Route::put('reviews/{reviewId}/status', [ReviewController::class, 'updateReviewStatus']);
 
         // list other admin routes here :
+
+        });
 
 
     });
