@@ -13,13 +13,13 @@ Route::get('/test', function () {
 
 
 // auth routes
-Route::prefix('auth')->group(function () {
+Route::prefix('auth')->controller(AuthController::class)->group(function () {
 
     // Endpoint: /api/auth/register
-    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/register', 'register');
 
     // Endpoint: /api/auth/login
-    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', 'login')->name('login');
 
 });
 
