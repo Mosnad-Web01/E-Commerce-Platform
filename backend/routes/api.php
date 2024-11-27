@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\api\AuthController;
-
-
+use App\Http\Controllers\Api\Customer\OrderController;
 
 // public routes ---
 Route::get('/test', function () {
@@ -20,7 +19,6 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 
     // Endpoint: /api/auth/login
     Route::post('/login', 'login')->name('login');
-
 });
 
 // prrotected Routes (Require Authentication)
@@ -63,8 +61,12 @@ Route::middleware('auth:sanctum')->group(function () {
             return "Hello Customer";
         });
 
-        // list other customer routes here:
-
-
+        //customer routes :
+        Route::prefix('orders')->group(function () {
+            Route::get('/', [OrderController::class, 'index']); // List all orders
+            Route::get('/{id}', [OrderController::class, 'show']); // View a specific order
+            Route::post('/', [OrderController::class, 'store']); // Place a new order
+            Route::put('/{id}', [OrderController::class, 'update']); // Update order status
+        });
     });
 });
