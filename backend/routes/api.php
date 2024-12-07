@@ -3,11 +3,15 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\AuthController;
+
+use App\Http\Controllers\Api\Customer\OrderController;
+
 use App\Http\Controllers\Api\Customer\ReviewController;
 use App\Http\Controllers\Api\Customer\ProductController;
 
 
 use App\Http\Controllers\Api\Customer\OrderController;
+
 
 // public routes ---
 Route::get('/test', function () {
@@ -22,10 +26,15 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::post('/register', 'register');
 
     // Endpoint: /api/auth/login
+    //feature/admin_operations
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     // Route::post('/login', 'login')->name('login');
 });
 
+
+ 
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+  
 // prrotected Routes (Require Authentication)
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -70,6 +79,14 @@ Route::middleware('auth:sanctum')->group(function () {
             return "Hello Customer";
         });
 
+
+        //customer routes :
+        Route::prefix('orders')->group(function () {
+            Route::get('/', [OrderController::class, 'index']); // List all orders
+            Route::get('/{id}', [OrderController::class, 'show']); // View a specific order
+            Route::post('/', [OrderController::class, 'store']); // Place a new order
+            Route::put('/{id}', [OrderController::class, 'update']); // Update order status
+
         Route::prefix('customer')->group(function () {
             // show all products
             Route::get('products', [ProductController::class, 'index']);
@@ -90,6 +107,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
             // list other customer routes here:
+            //feature/admin_operations
             //customer routes :
             Route::prefix('orders')->group(function () {
                 Route::get('/', [OrderController::class, 'index']); // List all orders
@@ -97,6 +115,7 @@ Route::middleware('auth:sanctum')->group(function () {
                 Route::post('/', [OrderController::class, 'store']); // Place a new order
                 Route::put('/{id}', [OrderController::class, 'update']); // Update order status
             });
+
         });
     });
 });
