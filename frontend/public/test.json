@@ -1,0 +1,156 @@
+{
+    "categoriesRes": {
+        "data": [
+            {
+                "id": 1,
+                "name": "Handmade Furniture",
+                "image": "/test1.jpg"
+            },
+            {
+                "id": 2,
+                "name": "Glass Crafts",
+                "image": "/test2.jpg"
+            },
+            {
+                "id": 3,
+                "name": "Pottery and Ceramics",
+                "image": "/test3.jpg"
+            },
+            {
+                "id": 4,
+                "name": "Jewelry and Accessories",
+                "image": "/test4.jpg"
+            },
+            {
+                "id": 5,
+                "name": "Traditional Clothing",
+                "image": "/test5.jpg"
+            },
+            {
+                "id": 6,
+                "name": "Handmade Accessories",
+                "image": "/test1.jpg"
+            }
+        ]
+    },
+    "featuredProductsRes": {
+        "data": [
+            {
+                "id": 1,
+                "name": "Wooden Lamp",
+                "description": "Handcrafted from natural olive wood.",
+                "price": 200,
+                "image": "/test1.jpg",
+                "rating": 4.5
+            },
+            {
+                "id": 2,
+                "name": "Colorful Ceramic Vase",
+                "description": "Perfect for decorating your home with elegance.",
+                "price": 150,
+                "image": "/test2.jpg",
+                "rating": 4.2
+            },
+            {
+                "id": 3,
+                "name": "Engraved Silver Necklace",
+                "description": "A traditional craft with a unique design.",
+                "price": 300,
+                "image": "/test3.jpg",
+                "rating": 4.8
+            },
+            {
+                "id": 4,
+                "name": "Handwoven Carpet",
+                "description": "Made from high-quality wool.",
+                "price": 1000,
+                "image": "/test4.jpg",
+                "rating": 4.9
+            },
+            {
+                "id": 5,
+                "name": "Colored Glass Mugs",
+                "description": "Add an artistic touch to your table.",
+                "price": 75,
+                "image": "/test5.jpg",
+                "rating": 4.3
+            }
+        ]
+    },
+    "artisansRes": {
+        "data": [
+            {
+                "id": 1,
+                "name": "Ahmed the Potter",
+                "bio": "Specializing in handmade pottery for 15 years.",
+                "image": "/test1.jpg",
+                "totalProducts": 120,
+                "rating": 4.7
+            },
+            {
+                "id": 2,
+                "name": "Sara the Glass Artist",
+                "bio": "An artist working with glass shaping and decoration.",
+                "image": "/test2.jpg",
+                "totalProducts": 85,
+                "rating": 4.9
+            },
+            {
+                "id": 3,
+                "name": "Mohammed the Carpenter",
+                "bio": "Specializing in luxury furniture designs using natural wood.",
+                "image": "/test3.jpg",
+                "totalProducts": 60,
+                "rating": 4.6
+            }
+        ]
+    },
+    "reviewsRes": {
+        "data": [
+            {
+                "id": 1,
+                "user": "Noor Al-Din",
+                "review": "The product is amazing and worth every penny!",
+                "rating": 5
+            },
+            {
+                "id": 2,
+                "user": "Leila Ahmed",
+                "review": "Excellent service, and the product is exactly as expected.",
+                "rating": 4.5
+            },
+            {
+                "id": 3,
+                "user": "Khalid Al-Otaibi",
+                "review": "Great quality but a bit overpriced.",
+                "rating": 4
+            },
+            {
+                "id": 4,
+                "user": "Hala Youssef",
+                "review": "Fast shipping and the product matches the description.",
+                "rating": 4.8
+            },
+            {
+                "id": 5,
+                "user": "Yasser Ali",
+                "review": "A wonderful experience, I will definitely repeat it!",
+                "rating": 5
+            }
+        ]
+    },
+    "dailyDealRes": {
+        "data": [
+            {
+                "id": 1,
+                "name": "Wooden Tool Box",
+                "description": "50% off today only on this handmade tool box.",
+                "oldPrice": 500,
+                "newPrice": 250,
+                "image": "/test1.jpg",
+                "discount": "50%",
+                "expiryDate": "2024-11-30T23:59:59"
+            }
+        ]
+    }
+}
