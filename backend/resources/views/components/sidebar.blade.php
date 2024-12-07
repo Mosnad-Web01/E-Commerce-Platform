@@ -50,10 +50,10 @@
     </nav>
 
     <!-- Logout Section -->
-    <div class="flex-shrink-0 mt-auto">
+    <!-- <div class="flex-shrink-0 mt-auto">
         <div class="border-t border-indigo-700 mb-4"></div>
         <x-sidebar-link :route="route('logout')" :label="'Logout'" :icon="'logout'" />
-    </div>
+    </div> -->
 </div>
 
 <!-- Add overlay for mobile -->
