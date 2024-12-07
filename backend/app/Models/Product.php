@@ -21,5 +21,37 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+    public function vendor()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function inventoryTransactions()
+    {
+        return $this->hasMany(InventoryTransaction::class);
+    }
+
+    public function views()
+    {
+        return $this->hasMany(ProductViews::class);
+    }
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
+
+
+
 
 }
