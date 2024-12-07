@@ -5,17 +5,18 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
 use App\Http\Controllers\dashboard\DashboardAuthController;
+use App\Http\Controllers\Dashboard\UserController;
 
 // Authentication Routes
 Route::middleware('guest')->group(function () {
     // Login Routes
     Route::get('/login', [DashboardAuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [DashboardAuthController::class, 'login']);
-    
+
     // Registration Routes
     Route::get('/register', [DashboardAuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [DashboardAuthController::class, 'register']);
-    
+
     // Password Reset Routes (to be implemented)
     Route::get('/forgot-password', [DashboardAuthController::class, 'showForgotPassword'])->name('password.request');
     Route::post('/forgot-password', [DashboardAuthController::class, 'sendResetLink'])->name('password.email');
@@ -27,10 +28,10 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     // Logout Route
     Route::post('/logout', [DashboardAuthController::class, 'logout'])->name('logout');
-    
+
     // User Profile Route
     Route::get('/user/profile', [DashboardAuthController::class, 'user'])->name('user.profile');
-    
+
     // Dashboard Home
     Route::get('/', function () {
         return view('dashboard.home');
@@ -67,10 +68,12 @@ Route::middleware('auth')->group(function () {
 
     // Users Routes
     Route::prefix('users')->group(function () {
-        Route::get('/', function () {
-            $users = User::with('role')->orderBy('name')->paginate(10);
-            return view('dashboard.users.index', compact('users'));
-        })->name('users.index');
+        Route::get('/', [UserController::class, 'index'])->name('users.index');
+        Route::get('/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/store', [UserController::class, 'store'])->name('users.store');
+        Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
+        Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/{user}', [UserController::class, 'update'])->name('users.update');
     });
 
     // Categories Routes
