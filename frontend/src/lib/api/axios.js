@@ -1,7 +1,8 @@
-const { default: axios } = require('axios')
+/* eslint-disable no-undef */
+import axios from 'axios'
 
-const instance = axios.create({
-  baseURL: process.env.BASE_URL,
+export const fetchApi = axios.create({
+  baseURL: `${process.env.BASE_URL}/api`,
   headers: {
     'Content-Type': 'application/json',
   },
