@@ -34,19 +34,18 @@
             :active="request()->routeIs('products.*')" />
         <x-sidebar-link :route="route('users.index')" :label="'Manage Users'" :icon="'group'"
             :active="request()->routeIs('users.*')" />
-        <x-sidebar-link :route="route('categories.index')" :label="'Manage Categories'" :icon="'category'"
-            :active="request()->routeIs('categories.*')" />
+        {{-- <x-sidebar-link :route="route('categories.index')" :label="'Manage Categories'" :icon="'category'"
+            :active="request()->routeIs('categories.*')" /> --}}
 
-        <x-sidebar-link :route="route('vendors.index')" :label="'Manage Vendors'" :icon="'people'"
-            :active="request()->routeIs('vendors.*')" />
+       
         <x-sidebar-link :route="route('orders.index')" :label="'Orders'" :icon="'receipt_long'"
             :active="request()->routeIs('orders.*')" />
 
 
-        <x-sidebar-link :route="route('analytics.index')" :label="'Analytics'" :icon="'bar_chart'"
-            :active="request()->routeIs('analytics.*')" />
-        <x-sidebar-link :route="route('settings')" :label="'Settings'" :icon="'settings'"
-            :active="request()->routeIs('settings')" />
+        {{-- <x-sidebar-link :route="route('analytics.index')" :label="'Analytics'" :icon="'bar_chart'"
+            :active="request()->routeIs('analytics.*')" /> --}}
+        {{-- <x-sidebar-link :route="route('settings')" :label="'Settings'" :icon="'settings'"
+            :active="request()->routeIs('settings')" /> --}}
     </nav>
 
     <!-- Logout Section -->
