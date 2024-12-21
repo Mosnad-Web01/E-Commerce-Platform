@@ -38,6 +38,13 @@
                     Don't have an account? Register
                 </a>
             </div>
+
+            <!-- Forgot Password Link -->
+            <div class="text-sm text-center mt-4">
+                <a href="{{ route('password.request') }}" class="font-medium text-indigo-600 hover:text-indigo-500">
+                    Forgot your password?
+                </a>
+            </div>
         </form>
     </div>
 </div>
