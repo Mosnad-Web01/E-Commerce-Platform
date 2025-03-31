@@ -24,18 +24,48 @@
             <span class="absolute top-1 right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">3</span>
         </button>
 
-        <!-- User Avatar -->
-        <div class="flex items-center space-x-3 border-l pl-4 border-gray-200">
-            <div class="flex flex-col items-end">
-                <span class="text-gray-800 font-medium text-sm">{{ auth()->user()->name }}</span>
-                <span class="text-xs text-gray-500">{{ auth()->user()->role->name ?? 'User' }}</span>
+        <!-- User Avatar and Dropdown -->
+        <div class="relative" x-data="{ open: false }" @click.away="open = false">
+            <!-- Avatar -->
+            <div class="flex items-center space-x-3 border-l pl-4 border-gray-200 cursor-pointer" @click="open = !open">
+                <div class="flex flex-col items-end">
+                    <span class="text-gray-800 font-medium text-sm">{{ auth()->user()->name }}</span>
+                    <span class="text-xs text-gray-500">{{ auth()->user()->role->name ?? 'User' }}</span>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                    <span class="text-indigo-600 font-medium text-sm">{{ substr(auth()->user()->name, 0, 2) }}</span>
+                </div>
             </div>
-            <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                <span class="text-indigo-600 font-medium text-sm">{{ substr(auth()->user()->name, 0, 2) }}</span>
+
+            <!-- Dropdown Menu -->
+            <div x-show="open" 
+                 x-transition:enter="transition ease-out duration-200" 
+                 x-transition:enter-start="opacity-0 transform scale-95" 
+                 x-transition:enter-end="opacity-100 transform scale-100" 
+                 x-transition:leave="transition ease-in duration-100" 
+                 x-transition:leave-start="opacity-100 transform scale-100" 
+                 x-transition:leave-end="opacity-0 transform scale-95"
+                 class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-10">
+                <!-- User Info -->
+                <div class="text-sm font-semibold text-gray-800">{{ auth()->user()->name }}</div>
+                <div class="text-xs text-gray-600">{{ auth()->user()->email }}</div>
+                <div class="text-xs text-gray-500 mt-2">
+                    Role: {{ ucfirst(auth()->user()->role->name) }}
+                </div>
+
+                <!-- Logout Button -->
+                <div class="mt-4">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="w-full text-sm text-red-600 hover:text-red-800 hover:bg-red-50 rounded-md transition-colors duration-150">
+                            Logout
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
 
-        <!-- Logout -->
+        {{-- <!-- Logout (Backup) -->
         <form method="POST" action="{{ route('logout') }}" class="ml-4">
             @csrf
             <button type="submit" onclick="event.preventDefault(); this.closest('form').submit();" class="px-4 py-2 text-sm font-medium text-red-600 hover:text-red-900 hover:bg-red-50 rounded-md transition-colors duration-150">
@@ -44,6 +74,6 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
             </button>
-        </form>
+        </form> --}}
     </div>
 </header>

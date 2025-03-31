@@ -6,6 +6,9 @@ use App\Models\Category;
 use App\Models\User;
 use App\Http\Controllers\dashboard\DashboardAuthController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\Dashboard\OrderController;
+
+
 
 // Authentication Routes
 Route::middleware('guest')->group(function () {
@@ -69,7 +72,7 @@ Route::middleware('auth')->group(function () {
 
     /// users
 
-    Route::prefix('users')->group(function () {
+    Route::prefix('users')->middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index');
         Route::get('/create', [UserController::class, 'create'])->name('users.create');
         Route::post('/store', [UserController::class, 'store'])->name('users.store');
@@ -89,14 +92,15 @@ Route::middleware('auth')->group(function () {
     });
 
     // Orders Route
-    Route::get('/orders', function () {
-        return "Manage Orders"; // Replace with view('orders.index') when implemented
-    })->name('orders.index');
 
-    // Vendors Route
-    Route::get('/vendors', function () {
-        return "Manage Vendors"; // Replace with view('vendors.index') when implemented
-    })->name('vendors.index');
+    Route::prefix('orders')->middleware(['auth'])->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('/{id}', [OrderController::class, 'show'])->name('orders.show');
+        Route::get('/{id}/edit', [OrderController::class, 'edit'])->name('orders.edit');
+        Route::put('/{id}', [OrderController::class, 'update'])->name('orders.update');
+    });
+
+
 
     // Analytics Route
     Route::get('/analytics', function () {
